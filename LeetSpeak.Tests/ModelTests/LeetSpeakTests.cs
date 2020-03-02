@@ -4,7 +4,7 @@ using LeetSpeak.Models;
 namespace LeetSpeak.Tests
 {
   [TestClass]
-  public class ClassNameTests
+  public class SpeakTests
   {
     [TestMethod]
     public void GetLetter_returnInputAsString_string()
@@ -66,5 +66,38 @@ namespace LeetSpeak.Tests
       // any necessary logic to prep for test; instantiating new classes, etc.
       Assert.AreEqual("9", Speak.GetLetter("G"));
     }
+
+    [TestMethod]
+    public void GetWord_ReturnString_string()
+    {
+      Assert.AreEqual("yum", Speak.GetWord("yum"));
+    }
+    [TestMethod]
+    public void GetWord_ReturnStringWithOsAsZeros_0()
+    {
+      Assert.AreEqual("l00k", Speak.GetWord("look"));
+    }
+
+    [TestMethod]
+    public void GetWord_ReturnStringWithEsAsThrees_3()
+    {
+      Assert.AreEqual("k33p", Speak.GetWord("keep"));
+    }
+    [TestMethod]
+    public void GetWord_ConvertsFirstLetterSasFive_5()
+    {
+      Assert.AreEqual("53ll", Speak.GetWord("sell"));
+    }
+    [TestMethod]
+    public void GetWord_ConvertsTwoWordsToLeet_string()
+    {
+      Assert.AreEqual("4ll0w m3 1n2id3", Speak.GetWord("Allow me Inside"));
+    }
+    [TestMethod]
+    public void GetSentence_ConvertsSentenceToLeet_string()
+    {
+      Assert.AreEqual("5phinx 0f 8lack Quar7z, jud93 my Ka7 v0w. 4ll0w m3 1n2id3", Speak.GetSentence("Sphinx of black Quartz, judge my cat vow. Allow me Inside"));
+    }
   }
+
 }

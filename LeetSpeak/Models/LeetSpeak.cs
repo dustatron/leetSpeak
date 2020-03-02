@@ -25,6 +25,8 @@ namespace LeetSpeak.Models
           return "2";
         case "S":
           return "5";
+        case "A":
+          return "4";
         case "C":
           return "K";
         case "b":
@@ -38,6 +40,45 @@ namespace LeetSpeak.Models
         default:
           return letter;
       }
+    }
+
+    public static string GetWord(string word)
+    {
+      string results = "";
+      for (int i = 0; i < word.Length; i++)
+      {
+        if(i == 0)
+        {
+          string FirstLetter = word[i].ToString().ToUpper();
+
+          if( FirstLetter == "S" || FirstLetter == "C")
+          {
+            results += GetLetter(FirstLetter);
+          }
+          else
+          {
+            results += GetLetter(word[i].ToString());
+          }
+        }
+        else{
+          results += GetLetter(word[i].ToString());
+        }
+      }
+      return results;
+    }
+
+    public static string GetSentence(string sentence)
+    {
+      string results = "";
+      string[] sentenceArrary = sentence.Split(" ");
+
+      foreach (var item in sentenceArrary)
+      {
+          results += GetWord(item) + " ";
+      }
+      
+      return results.TrimEnd(' ');
+
     }
   }
 }
